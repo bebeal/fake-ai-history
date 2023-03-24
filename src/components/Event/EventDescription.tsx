@@ -19,7 +19,10 @@ const EventDescription: React.FC<EventDescriptionProps> = ({
 
   const wrapMarkdown = () => {
     return (
-      <Typography variant={"body1"}>{image && <Image src={image} caption={imageCaption} />}<Markdown className='markdown'>{description}</Markdown></Typography>
+      <Typography component={'span'} variant={"body1"}>
+        {image && <Image src={image} caption={imageCaption} />}
+        <Markdown className='markdown'>{description}</Markdown>
+      </Typography>
     );
   };
 

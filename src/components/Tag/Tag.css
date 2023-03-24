@@ -1,0 +1,41 @@
+.tag {
+    overflow: hidden;
+    display: inline-flex;
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    height: 1.75rem;
+    max-width: 100%;
+    margin: 0px 0.125rem 0.125rem 0px;
+    background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);
+    color: #FFF;
+    align-items: center;
+    white-space: nowrap;
+    border-radius: 0.5rem;
+    border: 1px solid #E5E7EB;
+}
+.tag > span {
+    padding: 0rem 0.25rem;
+}
+.tag.inactive {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+.tag-white {
+    background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);
+    color: #4A5568;
+}
+.tag-white:hover {
+    background-image: linear-gradient(to bottom, #FFFFFF, #F3F4F6);
+    color: #4A5568;
+    cursor: pointer;
+}
+
+
+.tag-ico {
+    color: #000;
+    display: flex;
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+    align-items: center;
+    line-height: 1.25rem; 
+}

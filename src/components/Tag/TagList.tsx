@@ -10,14 +10,14 @@ const TagList: React.FC<TagListProps> = ({
     tags, 
 }) => {
 
-  const getTag = (tag: any) => {
-    return (<Tag tag={tag} />)
+  const getTag = (tagName: string) => {
+    return (<Tag tagName={tagName} />)
   };
 
   return (
     <Box>
       {  tags.length && 
-      tags.array.forEach((tag: any) => getTag(tag))
+      tags.array.forEach((tagName: string) => getTag(tagName))
       }
     </Box>
   );

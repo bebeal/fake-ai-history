@@ -10,7 +10,7 @@ const EventModel: React.FC<EventModelProps> = ({
 }) => {
 
   const getModelName = () => {
-    return (<Typography>{model.name}</Typography>)
+    return (<Typography component={'span'}>{model.name}</Typography>)
   };
 
   return (

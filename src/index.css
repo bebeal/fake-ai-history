@@ -1,3 +1,11 @@
+body {
+  background-color: #f3f7f9;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 a {
   color: #1976d2;
   text-decoration: none;
@@ -9,4 +17,8 @@ a:visited {
 
 a:hover {
   text-decoration: underline;
+}
+
+*, *::before, *:after {
+  box-sizing: border-box;
 }

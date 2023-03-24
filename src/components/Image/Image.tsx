@@ -24,13 +24,13 @@ const Image: React.FC<ImageProps> = ({
   }
 
   const getCaption = () => {
-    return (<Typography variant="caption">{caption}</Typography>);
+    return (<Typography variant="caption" component={'span'}>{caption}</Typography>);
   }
 
   return (
     <Box sx={{ display: "flex", width: width, height: "auto", float: "left", margin: "0.25em 0.9em 0em 0em", border: "1px solid #c8ccd1", backgroundColor: "#f8f9fa" }} >
       <Box sx={{ padding: "4px", display: 'flex', overflow: "hidden" }}>
-        <Typography>
+        <Typography component={'span'}>
         <CardMedia component={"img"} src={src} alt={alt} sx={{ outline: "1px solid #c8ccd1" }}/>
           <Box sx={{ padding: "6px", fontSize: "80%", textAlign: "center"}}>
             {header && getHeader()}

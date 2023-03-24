@@ -1,10 +1,14 @@
 import React from 'react';
 import Event from './components/Event/Event';
 import Image from './components/Image/Image';
+import Tag from './components/Tag/Tag';
 
 function App() {
   return (
     <div className="App">
+
+      <Tag tagName={'JAX'} />
+
       <div style={{
         maxWidth: '1000px',
         height: 'auto'

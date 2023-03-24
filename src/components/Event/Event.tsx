@@ -79,7 +79,7 @@ const Event: React.FC<EventProps> = ({
   }
 
   const getModelTab = (): React.ReactNode => {
-    return <div>{model.name}</div>;
+    return <Box>{model.name}</Box>;
   }
 
   const getPapersTab = (): React.ReactNode => {
@@ -87,7 +87,7 @@ const Event: React.FC<EventProps> = ({
   }
 
   const getResourcesTab = (): React.ReactNode => {
-    return <div>{resources}</div>;
+    return <Box>{resources}</Box>;
   }
 
   return (
@@ -105,12 +105,12 @@ const Event: React.FC<EventProps> = ({
           {papers && <Tab label="Papers" icon={<ArticleRoundedIcon />} iconPosition="start" />}
           {resources && <Tab label="Resources" icon={<LinkRoundedIcon />} iconPosition="start" />}
         </EventTabs>
-        <div>
+        <Box>
             {activeTab === 0 && getDescriptionTab()}
             {model && activeTab === 1 && getModelTab()}
             {papers && activeTab === 2 && getPapersTab()}
             {resources && activeTab === 3 && getResourcesTab()}
-        </div>
+        </Box>
         </EventContent>
     </Card>
   );

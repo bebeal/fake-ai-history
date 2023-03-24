@@ -10,7 +10,7 @@ const EventResources: React.FC<EventResourcesProps> = ({
 }) => {
 
   const getResource = (resource: any) => {
-    return (<Typography>{resource}</Typography>)
+    return (<Typography component={'span'}>{resource}</Typography>)
   };
 
   return (
