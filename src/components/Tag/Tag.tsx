@@ -29,7 +29,7 @@ const Tag: React.FC<TagProps> = ({
     let icoClasses = 'tag-ico';
     if (useHref) {
       return (
-        <a href={tag.href} className={tagClasses} target={'_blank'} rel="noreferrer" >
+        <a href={tag.href} className={tagClasses} target={'_blank'} rel="noreferrer">
           {tag.icon && <div className={icoClasses}>{tag.icon}</div>}
           {tag.label.length > 0 && <span>{tag.label}</span>}
         </a>

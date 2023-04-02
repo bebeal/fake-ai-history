@@ -14550,5 +14550,4 @@ zoom_out_map: (width: string = '24px', height: string = '24px', fill: string = "
       href: "",
     };
   },
-
 };
