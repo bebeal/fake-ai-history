@@ -1,3 +1,13 @@
+/* Tag Ico */
+.tag-ico {
+    align-items: center;
+    display: flex;
+    color: #000000;
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    margin-left: 0.5rem;
+}
+
 /* Tag */
 .tag {
     --tw-gradient-from: #ffffff;
@@ -11,7 +21,8 @@
     border: var(--tw-border-size) var(--tw-border-style) var(--tw-border-color);
     color: var(--tw-color) !important;
     text-decoration-color: var(--tw-color);
-    
+    background-size: 100% 100%;
+
     align-items: center;
     border-radius: 0.5rem;
     display: inline-flex;
@@ -179,14 +190,4 @@
 }
 .dark .tag-yellow:hover {
     --tw-gradient-to: #1f2937;
-}
-
-/* Tag Ico */
-.tag-ico {
-    align-items: center;
-    display: flex;
-    color: #000;
-    font-size: 0.875rem;
-    line-height: 1.25rem; 
-    margin-left: 0.5rem;
 }

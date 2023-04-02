@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './Tag.css';
-import { COLOR_MAP, getTagFromMap } from "./Tags";
+import ReactDOMServer from 'react-dom/server';
+import { fourCornerGradientBackground, getTagFromMap } from "./Tags";
 
 interface TagProps {
   tagName: any;
@@ -22,14 +23,14 @@ const Tag: React.FC<TagProps> = ({
     height='24px',
 }) => {
   const [active, setActive] = useState(initiallyActive);
-  const tag: any = getTagFromMap(tagName, variant, width, height, COLOR_MAP[tagColor], COLOR_MAP[tagColor]);
+  const tag: any = getTagFromMap(tagName, variant, width, height);
 
   const getTag = (useHref: boolean): JSX.Element => {
     let tagClasses = 'tag tag-' + tagColor;
     let icoClasses = 'tag-ico';
     if (useHref) {
       return (
-        <a href={tag.href} className={tagClasses} target={'_blank'} rel="noreferrer">
+        <a href={tag.href} className={tagClasses} target={'_blank'} rel="noreferrer" >
           {tag.icon && <div className={icoClasses}>{tag.icon}</div>}
           {tag.label.length > 0 && <span>{tag.label}</span>}
         </a>
