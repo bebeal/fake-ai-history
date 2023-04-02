@@ -1,42 +1,52 @@
 import React, { useState } from "react";
 import './Tag.css';
-import { getTagFromMap } from "./utils";
+import { COLOR_MAP, getTagFromMap } from "./Tags";
 
 interface TagProps {
   tagName: any;
   initiallyActive?: boolean;
   useHref?: boolean;
+  variant?: number;
+  tagColor?: string;
+  width?: string;
+  height?: string;
 }
 
 const Tag: React.FC<TagProps> = ({ 
     tagName,
     initiallyActive=true,
     useHref=false,
+    variant=0,
+    tagColor='white',
+    width='24px',
+    height='24px',
 }) => {
   const [active, setActive] = useState(initiallyActive);
-  const tag: any = getTagFromMap(tagName);
+  const tag: any = getTagFromMap(tagName, variant, width, height, COLOR_MAP[tagColor], COLOR_MAP[tagColor]);
 
-  const getTagLink = (): JSX.Element => {
-    return (
-      <a href={tag.href} className={'tag tag-white'} target={'_blank'} rel="noreferrer" >
-          <div className="tag-ico">{tag.icon}</div>
-          <span>{tag.label}</span>
-      </a>
-    );
-  };
-
-  const getTag = (): JSX.Element => {
-    const className = 'tag tag-white' + (!active ? ' inactive' : '');
-    return (
-        <div className={className} onClick={(event: any) => setActive(!active)}>
-          <div className="tag-ico">{tag.icon}</div>
-          <span>{tag.label}</span>
+  const getTag = (useHref: boolean): JSX.Element => {
+    let tagClasses = 'tag tag-' + tagColor;
+    let icoClasses = 'tag-ico';
+    if (useHref) {
+      return (
+        <a href={tag.href} className={tagClasses} target={'_blank'} rel="noreferrer" >
+          {tag.icon && <div className={icoClasses}>{tag.icon}</div>}
+          {tag.label.length > 0 && <span>{tag.label}</span>}
+        </a>
+      );
+    } else {
+      tagClasses = tagClasses + (!active ? ' inactive' : '');
+      return (
+        <div className={tagClasses} onClick={(event: any) => setActive(!active)}>
+          {tag.icon && <div className={icoClasses}>{tag.icon}</div>}
+          {tag.label.length > 0 && <span>{tag.label}</span>}
         </div>
       );
+    }
   };
 
   return (
-    useHref ? getTagLink() : getTag()
+    getTag(useHref)
   );
 };
 

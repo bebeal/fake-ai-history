@@ -1,41 +1,192 @@
+/* Tag */
 .tag {
-    overflow: hidden;
+    --tw-gradient-from: #ffffff;
+    --tw-gradient-to: #ffffff;
+    --tw-color: #00000000;
+    --tw-border-color: transparent;
+    --tw-border-size: 1px;
+    --tw-border-style: solid;
+
+    background-image: linear-gradient(to bottom, var(--tw-gradient-from),var(--tw-gradient-to));
+    border: var(--tw-border-size) var(--tw-border-style) var(--tw-border-color);
+    color: var(--tw-color) !important;
+    text-decoration-color: var(--tw-color);
+    
+    align-items: center;
+    border-radius: 0.5rem;
     display: inline-flex;
     font-size: 0.875rem;
     line-height: 1.25rem; 
     height: 1.75rem;
-    max-width: 100%;
     margin: 0px 0.125rem 0.125rem 0px;
-    background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);
-    color: #FFF;
-    align-items: center;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
-    border-radius: 0.5rem;
-    border: 1px solid #dee1e6;
-}
-.tag > span {
-    padding: 0rem 0.25rem;
 }
 .tag.inactive {
     filter: grayscale(100%);
     opacity: 0.5;
 }
-.tag-white {
-    background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);
-    color: #4A5568;
-}
-.tag-white:hover {
-    background-image: linear-gradient(to bottom, #FFFFFF, #F3F4F6);
-    color: #4A5568;
+.tag:hover {
     cursor: pointer;
 }
+.tag > span {
+    padding: 0rem 0.25rem;
+}
+/* Tag (Dark Mode) */
+.dark .tag {
+    --tw-border-color: #141c2e;
+}
+/* Tag Color Variants: white, blue, green, indigo, orange, purple, yellow */
+/* White Tag */
+.tag-white {
+    --tw-gradient-from: #ffffff;
+    --tw-gradient-to: #ffffff;
+    --tw-color: #374151;
+    --tw-border-color: #dee1e6;
+}
+.tag-white:hover {
+    --tw-gradient-to: #f3f4f6;
+}
+/* White Tag (Dark Mode) */
+.dark .tag-white {
+    --tw-gradient-from: #101623;
+    --tw-gradient-to: #101623;
+    --tw-border-color: #d1d5db;
+    --tw-color: #d1d5db;
+}
+.dark .tag-white:hover {
+    --tw-gradient-to: #1f2937;
+}
+/* Blue Tag */
+.tag-blue {
+    --tw-gradient-from: #eff6ff;
+    --tw-gradient-to: #eff6ff00;
+    --tw-color: #1e40af;
+    --tw-border-color: #1e40af80;
+}
+.tag-blue:hover {
+    --tw-gradient-to: #dbeafe
+}
+/* Blue Tag (Dark Mode) */
+.dark .tag-blue {
+    --tw-gradient-from: #101623;
+    --tw-gradient-to: #10162300;
+    --tw-color: #d1d5db;
+    --tw-border-color: #d1d5db80;
+}
+.dark .tag-blue:hover {
+    --tw-gradient-to: #1f2937;
+}
+/* Green Tag */
+.tag-green {
+    --tw-gradient-from: #ecfdf5;
+    --tw-gradient-to: #ecfdf500;
+    --tw-color: #065f46;
+    --tw-border-color: #065f4680;
+}
+.tag-green:hover {
+    --tw-gradient-to: #d1fae5;
+}
+/* Green Tag (Dark Mode) */
+.dark .tag-green {
+    --tw-gradient-from: #101623;
+    --tw-gradient-to: #10162300;
+    --tw-color: #d1d5db;
+    --tw-border-color: #d1d5db80;
+}
+.dark .tag-green:hover {
+    --tw-gradient-to: #1f2937;
+}
+/* Indigo Tag */
+.tag-indigo {
+    --tw-gradient-from: #eef2ff;
+    --tw-gradient-to: #eef2ff00;
+    --tw-color: #3730a3;
+    --tw-border-color: #3730a380;
+}
+.tag-indigo:hover {
+    --tw-gradient-to: #e0e7ff;
+}
+/* Indigo Tag (Dark Mode) */
+.dark .tag-indigo {
+    --tw-gradient-from: #101623;
+    --tw-gradient-to: #10162300;
+    --tw-color: #d1d5db;
+    --tw-border-color: #d1d5db80;
+}
+.dark .tag-indigo:hover {
+    --tw-gradient-to: #1f2937;
+}
+/* Orange Tag */
+.tag-orange {
+    --tw-gradient-from: #fff7ed;
+    --tw-gradient-to: #fff7ed00;
+    --tw-color: #9a3412;
+    --tw-border-color: #9a341280;
+}
+.tag-orange:hover {
+    --tw-gradient-to: #ffedd5;
+}
+/* Orange Tag (Dark Mode) */
+.dark .tag-orange {
+    --tw-gradient-from: #101623;
+    --tw-gradient-to: #10162300;
+    --tw-color: #d1d5db;
+    --tw-border-color: #d1d5db80;
+}
+.dark .tag-orange:hover {
+    --tw-gradient-to: #1f2937;
+}
+/* Purple Tag */
+.tag-purple {
+    --tw-gradient-from: #f5f3ff;
+    --tw-gradient-to: #f5f3ff00;
+    --tw-text-opacity: 1;
+    --tw-color: #5b21b2;
+    --tw-border-color: #5b21b280;
+}
+.tag-purple:hover {
+    --tw-gradient-to: #ede9fe;
+}
+/* Purple Tag (Dark Mode) */
+.dark .tag-purple {
+    --tw-gradient-from: #101623;
+    --tw-gradient-to: #10162300;
+    --tw-color: #d1d5db;
+    --tw-border-color: #d1d5db80;
+}
+.dark .tag-purple:hover {
+    --tw-gradient-to: #1f2937;
+}
+/* Yellow Tag */
+.tag-yellow {
+    --tw-gradient-from: #fffbeb;
+    --tw-gradient-to: #fffbeb00;
+    --tw-color: #92400e;
+    --tw-border-color: #92400e80;
+}
+.tag-yellow:hover {
+    --tw-gradient-to: #fef3c7;
+}
+/* Yellow Tag (Dark Mode) */
+.dark .tag-yellow {
+    --tw-gradient-from: #101623;
+    --tw-gradient-to: #10162300;
+    --tw-color: #d1d5db;
+    --tw-border-color: #d1d5db80;
+}
+.dark .tag-yellow:hover {
+    --tw-gradient-to: #1f2937;
+}
 
-
+/* Tag Ico */
 .tag-ico {
-    color: #000;
-    display: flex;
-    margin-left: 0.5rem;
-    font-size: 0.875rem;
     align-items: center;
+    display: flex;
+    color: #000;
+    font-size: 0.875rem;
     line-height: 1.25rem; 
+    margin-left: 0.5rem;
 }

@@ -3,9 +3,11 @@ import { Box, Typography } from "@mui/material";
 import Tag from "./Tag";
 import styled from 'styled-components';
 
-const TagListContainer = styled.div`
+const TagListContainer = styled.div<TagListProps>`
     display: flex;
+    width: auto;
     flex-wrap: wrap;
+    flex-direction: ${(props: any) => props.direction};
 
     &::before {
       margin-top: 0.5rem;
@@ -18,23 +20,25 @@ const TagListContainer = styled.div`
 `
 
 interface TagListProps {
-  tags: any;
+  tags?: any;
+  direction?: 'row' | 'column';
+  useHref?: boolean;
+  tagColors?: string[];
 }
 
 const TagList: React.FC<TagListProps> = ({ 
     tags, 
+    direction='row',
+    useHref=false,
+    tagColors=[],
 }) => {
-  console.log(tags);
-
-  const getTag = (tagName: string) => {
-    return (<Tag tagName={tagName} />);
+  const getTag = (tagName: string, tagColor?: string) => {
+    return (<div key={tagName} style={{width: 'auto'}}><Tag tagName={tagName} useHref={useHref} tagColor={tagColor} /></div>);
   };
 
   return (
-    <TagListContainer>
-      {  tags.length && 
-      tags.map((tagName: string) => getTag(tagName))
-      }
+    <TagListContainer direction={direction}>
+      {tags && tags.map((tagName: string, index: number) => getTag(tagName, tagColors[index] || 'white') )}
     </TagListContainer>
   );
 };

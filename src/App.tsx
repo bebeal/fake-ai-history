@@ -3,14 +3,12 @@ import Event from './components/Event/Event';
 import Image from './components/Image/Image';
 import Tag from './components/Tag/Tag';
 import TagList from './components/Tag/TagList';
-import { TAGS } from './components/Tag/utils';
+import { TAGS, renderAllTagSets } from './components/Tag/Tags';
 
 function App() {
   return (
     <div className="App" style={{margin: '10px'}}>
       
-      <TagList tags={Object.keys(TAGS)} />
-
       <div style={{
         maxWidth: '1000px',
         height: 'auto'
@@ -96,6 +94,7 @@ function App() {
           resources={["https://lilianweng.github.io/posts/2018-08-12-vae/", "https://paperswithcode.com/method/vae"]} 
           />
       </div>
+      {renderAllTagSets()}
     </div>
   );
 }
