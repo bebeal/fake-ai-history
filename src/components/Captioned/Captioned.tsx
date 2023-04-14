@@ -68,7 +68,7 @@ const CaptionedComponent = ({
     } else if (isUrl(caption)) {
       return (
         <Caption center={center} label={label}>
-          <a href={caption}>Source</a>
+          <a href={caption} target={"_blank"} rel={"noreferrer"}>Source</a>
         </Caption>
       );
     } else {

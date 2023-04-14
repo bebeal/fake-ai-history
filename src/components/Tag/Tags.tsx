@@ -27,11 +27,37 @@ import { range, slice } from "../../utils/utils";
 
 export const TAG_COLORS = ['white', 'ghost', 'blue', 'green', 'indigo',  'orange', 'purple', 'yellow']
 
+export const TAGS: any = {
+    ...Custom_Tags,
+    ...Org_Tags,
+    ...BI_Tags,
+    ...BX_Tags,
+    ...Carbon_Tags,
+    ...FABrand_Tags,
+    ...FARegular_Tags,
+    ...HF_Tags,
+    ...IC_Tags,
+    ...Ion_Tags,
+    ...MDI_Tags,
+    ...MingCute_Tags,
+    ...PH_Tags,
+    ...RI_Tags,
+    ...Tabler_Tags,
+    ...Teeny_Tags,
+    ...UIL_Tags,
+    ...Logo_Tags,
+    ...VSCode_Tags,
+};
+
 export const getTagFromMap = (tagName: string, variant: number = 0, width: string = '32px', height: string = '32px', fill: string = '#000000', stroke: string = '#000000') => { 
     if (Object.keys(Org_Tags).includes(tagName)) {
         return Object.keys(TAGS).includes(tagName) ? TAGS[tagName](variant, width, height, fill, stroke) : getEmptyTag(width, height);
     }
     return Object.keys(TAGS).includes(tagName) ? TAGS[tagName](width, height, "var(--tw-color)") : getEmptyTag(width, height);
+};
+
+export const tagInMap = (tagName: string) => {
+    return Object.keys(TAGS).includes(tagName);
 };
 
 export const getEmptyTag = (width: string = '18px', height: string = '18px', fill: string = '#FFFFFF', stroke: string = '#000000') => {
@@ -81,29 +107,6 @@ export const getIconOnTopOfBackgroundGradient = (tagName: string, variant: numbe
     const svg =  ReactDOMServer.renderToString(fourCornerGradientBackground(topLeft, topRight, bottomRight, bottomLeft));
     const backgroundImage = `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
     return <div style={{backgroundImage, width: width, height: width, borderRadius: borderRadius, alignItems: 'center', display: 'inline-flex', justifyContent: 'center'}}>{tag.icon}</div>
-};
-
-
-export const TAGS: any = {
-    ...Custom_Tags,
-    ...Org_Tags,
-    ...BI_Tags,
-    ...BX_Tags,
-    ...Carbon_Tags,
-    ...FABrand_Tags,
-    ...FARegular_Tags,
-    ...HF_Tags,
-    ...IC_Tags,
-    ...Ion_Tags,
-    ...MDI_Tags,
-    ...MingCute_Tags,
-    ...PH_Tags,
-    ...RI_Tags,
-    ...Tabler_Tags,
-    ...Teeny_Tags,
-    ...UIL_Tags,
-    ...Logo_Tags,
-    ...VSCode_Tags,
 };
 
 /* For Testing */

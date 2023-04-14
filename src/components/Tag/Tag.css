@@ -216,8 +216,8 @@
     --tw-gradient-from: #f8f9fa;
     --tw-gradient-to: #f8f9fa00;
     --tw-color: #374151;
-    --tw-border-color: #797A7B80;
+    --tw-border-color: #37415180;
 }
 .tag-author:hover {
-    --tw-gradient-to: #ffffff;
+    --tw-gradient-to: #e9ecef;
 }

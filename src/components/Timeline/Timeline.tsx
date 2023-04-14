@@ -81,6 +81,8 @@ const TimelineItemContent = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     flex-basis: 50%;
+    overflow: auto;
+    max-width: 100%;
     flex-grow: 1;
     
 `

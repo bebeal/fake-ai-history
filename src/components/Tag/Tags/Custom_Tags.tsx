@@ -1,6 +1,73 @@
+import { Avatar } from '@mui/material';
 import React from 'react';
 
 export const Custom_Tags = {
+    Custom_rosenblatt: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
+      return {
+        label: "Rosenblatt, Frank",
+        icon: <Avatar alt="Rosenblatt, Frank" src="./people/rosenblatt.jpeg" sx={{ width: width, height: height }}/>,
+      };
+    },
+    Custom_fukushima: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
+      return {
+        label: "Fukushima, Kunihiko",
+        icon: <Avatar alt="Fukushima, Kunihiko" src="./people/fukushima.jpeg" sx={{ width: width, height: height }}/>,
+      };
+    },
+    Custom_mcculloch: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
+      return {
+        label: "Warren, Mcculloch",
+        icon: <Avatar alt="Warren, Mcculloch" src="./people/mcculloch.png" sx={{ width: width, height: height }}/>,
+      };
+    },
+    Custom_pitts: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
+      return {
+        label: "Pitts, Walter",
+        icon: <Avatar alt="Pitts, Walter" src="./people/pitts.jpg" sx={{ width: width, height: height }}/>,
+      };
+    },
+    Custom_antonoglou: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
+      return {
+        label: "Antonoglou, Ioannis",
+        icon: <Avatar alt="Antonoglou, Ioannis" src="./people/antonoglou.jpeg" sx={{ width: width, height: height }}/>,
+      };
+    },
+    Custom_graves: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
+      return {
+        label: "Graves, Alex",
+        icon: <Avatar alt="Graves, Alex" src="./people/graves.jpeg" sx={{ width: width, height: height }}/>,
+      };
+    },
+    Custom_kavukcuoglu: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
+      return {
+        label: "Kavukcuoglu, Koray",
+        icon: <Avatar alt="Kavukcuoglu, Koray" src="./people/kavukcuoglu.jpeg" sx={{ width: width, height: height }}/>,
+      };
+    },
+    Custom_mnih: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
+      return {
+        label: "Mnih, Vlad",
+        icon: <Avatar alt="Minh, Vlad" src="./people/mnih.jpg" sx={{ width: width, height: height }}/>,
+      };
+    },
+    Custom_riedmiller: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
+      return {
+        label: "Riedmiller, Martin",
+        icon: <Avatar alt="Riedmiller, Martin" src="./people/riedmiller.jpg" sx={{ width: width, height: height }}/>,
+      };
+    },
+    Custom_silver: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
+      return {
+        label: "Silver, David",
+        icon: <Avatar alt="Silver, David" src="./people/silver.jpeg" sx={{ width: width, height: height }}/>,
+      };
+    },
+    Custom_wierstra: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
+      return {
+        label: "Wierstra, Daan",
+        icon: <Avatar alt="Wierstra, Daan" src="./people/wierstra.jpeg" sx={{ width: width, height: height }}/>,
+      };
+    },
     Custom_Brain: ( width: string = "1em", height: string = "1em", fill: string = "#000000", stroke: string = "#FFFFFF" ) => {
       return {
         label: "Brain",

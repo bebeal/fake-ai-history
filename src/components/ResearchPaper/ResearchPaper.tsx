@@ -13,6 +13,8 @@ import MuiAccordionSummary, {
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import "./ResearchPaper.css";
+import NamedTag from "../Tag/NamedTag";
+import { tagInMap } from "../Tag/Tags";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
@@ -157,10 +159,30 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
     );
   };
 
+  const getLastName = (author: string) => {
+    return author.split(" ").slice(-1)[0].toLowerCase();
+  };
+
+  const getNamedAuthorTagName = (author: string) => {
+    return "Custom_" + getLastName(author);
+  }
+
+  const getNamedAuthorTag = (author: string) => {
+    return (
+      <NamedTag tagName={getNamedAuthorTagName(author)} tagColor={"author"} />
+    );
+  };
+
+  const getAuthorTag = (author: string) => {
+    return (
+      <Tag key={author} label={author} tagColor={"author"} />
+    );
+  };
+
   const getAuthor = (author: string) => {
     return (
       <Box padding="0px" margin="4px 0px 0px 0px">
-        <Tag key={author} label={author}></Tag>
+        {tagInMap(getNamedAuthorTagName(author)) ? getNamedAuthorTag(author) : getAuthorTag(author)}
       </Box>
     )
   }
@@ -255,7 +277,7 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
   const getUnstyledExpandedResearchPaper = () => {
     return (
       <Box padding={"4px"}>
-        <Grid container flexWrap={"nowrap"} overflow={"hidden"}>
+        <Grid container flexWrap={"nowrap"} overflow={"auto"}>
           {getPaperInfo()}
           {getPaper()}
         </Grid>
@@ -273,7 +295,7 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
       onChange={() => {
         setExpanded(!expanded);
       }}
-      style={{ border: "1px solid rgba(200, 204, 209, 1)", backgroundColor: "#f8f9fa", margin: "0px", padding: "0px",  width: "100%", maxHeight: "100%"}}
+      style={{ border: "1px solid rgba(200, 204, 209, 1)", backgroundColor: "#f8f9fa", margin: "0px", padding: "0px",  width: "100%", maxHeight: "100%", maxWidth: "100%", overflow: "hidden"}}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}

@@ -59,6 +59,14 @@ const EventDescription: React.FC<EventDescriptionProps> = ({
             rehypePlugins={[rehypeKatex]}
             remarkPlugins={[remarkMath]}
             children={description}
+            linkTarget={'_blank'}
+            components={{
+                a: ({ node, children, ...props}) => {
+                    const linkProps = props;
+                    linkProps['rel'] = 'noopener noreferrer';
+                    return <a {...linkProps}>{children}</a>
+                }
+            }}
           /></StyledMarkdownBox>
         </Typography>
       </Box>

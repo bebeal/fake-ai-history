@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 
 import styled from "styled-components";
-import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Box, IconButton } from "@mui/material";
 
 const CarouselWrapper = styled.div`
@@ -28,6 +28,8 @@ const CarouselButton = styled<any>(IconButton)`
   position: absolute !important;
   top: 50%;
   z-index: 2;
+  padding: 0px !important;
+  margin: 0px !important;
   ${({ isLeft }) => (isLeft ? "left: 0;" : "right: 0;")}
 `;
 
@@ -73,7 +75,7 @@ const ContentCarousel = ({ contentList }: ContentCarouselProps) => {
             );
           }}
         >
-          <ArrowBackIos />
+          <ChevronLeftIcon />
         </CarouselButton>
       )}
       <CarouselContent ref={contentRef} onMouseEnter={handleMouseEnterImage} onMouseLeave={handleMouseLeaveImage}>
@@ -88,7 +90,7 @@ const ContentCarousel = ({ contentList }: ContentCarouselProps) => {
             setCurrentIndex((currentIndex + 1) % contentList.length);
           }}
         >
-          <ArrowForwardIos />
+          <ChevronRightIcon />
         </CarouselButton>
       )}
     </StyledCarousel>
