@@ -8,11 +8,11 @@ import 'katex/dist/katex.min.css';
 import { Box, Typography } from '@mui/material';
 import Image from '../Image/Image';
 import styled from 'styled-components';
-// import ContentCarousel from '../ContentCarousel/ContentCarousel';
+import ContentCarousel from '../ContentCarousel/ContentCarousel';
 
 const StyledMarkdownBox = styled.div`
   > p {
-    margin: 0 px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
   }
 `
 
@@ -23,27 +23,10 @@ interface EventDescriptionProps {
 
 const EventDescription: React.FC<EventDescriptionProps> = ({
   description,
-  images,
+  images=[],
 }) => {
-  const lightGallery = useRef<any>(null);
-  const [index, setIndex] = React.useState<number>(0);
 
-  const onBeforeSlide = (detail: any) => {
-    const { index, prevIndex } = detail;
-    console.log(index, prevIndex);
-    setIndex(index);
-  };
-
-  const getImage = () => {
-    const image = images![index];
-    return (
-      <Box>
-      <Image src={image.src} caption={image.caption} source={image.source} />
-    </Box>
-    )
-  }
-
-  const makeContentItemList = () => { 
+  const makeContentList = () => { 
     return images!.map((image, index) => {
       return {
         id: image.id,
@@ -53,25 +36,24 @@ const EventDescription: React.FC<EventDescriptionProps> = ({
         source: image.source,
         getContent: () => {
           return (
-            <Image src={image.src} caption={image.caption} source={image.source} baseImage={true} />
+            <Image src={image.src} caption={image.caption} source={image.source} maxWidth="100%"  />
             )
         }
       }
     });
   };
 
-  // const getContentCarousel = () => {
-  //   return (
-  //     <ContentCarousel contentItemList={makeContentItemList()} />
-  //   )
-  // };
+  const getContentCarousel = () => {
+    return (
+      <ContentCarousel contentList={makeContentList()} />
+    )
+  };
 
   const getDescription = () => {
     return (
       <Box display="flex" justifyContent={"center"} alignItems={"center"}>
-        <Typography component={'span'} variant={"body1"} width={"95%"}>
-          {/* {images && getImageCaraousel()} */}
-          {images && getImage()}
+        <Typography component={"span"} variant={"body1"} width={"95%"}>
+          {images && getContentCarousel()}
           <StyledMarkdownBox>
           <ReactMarkdown 
             rehypePlugins={[rehypeKatex]}

@@ -10,7 +10,7 @@ export interface ImageProps {
   width?: string;
   maxWidth?: string;
   source?: string;
-  baseImage?: boolean;
+  wrap?: boolean;
 }
 
 const Image: React.FC<ImageProps> = ({
@@ -18,10 +18,10 @@ const Image: React.FC<ImageProps> = ({
   header,
   src,
   alt,
-  width = "300px",
+  width = "100%",
   maxWidth = "25%",
   source,
-  baseImage = false,
+  wrap = false,
 }) => {
   const getHeader = () => {
     return (
@@ -56,24 +56,13 @@ const Image: React.FC<ImageProps> = ({
     );
   };
 
-  return (
-    <Box
-    justifyContent={"center"}
-    sx={{
-      display: "flex",
-      width: "auto",
-      maxWidth: { maxWidth },
-      height: "auto",
-      float: "left",
-      margin: "auto 5px auto 0px",
-      border: "1px solid #c8ccd1",
-      backgroundColor: "#f8f9fa",
-    }}
-  >
-    <Box
+  const getImage = () => {
+    return (
+      <Box
       sx={{
         padding: "4px",
         display: "flex",
+        width: "100%",
         overflow: "hidden",
         backgroundColor: "white",
       }}
@@ -90,8 +79,24 @@ const Image: React.FC<ImageProps> = ({
         {(caption || header) && getText()}
       </Typography>
     </Box>
+    );
+  };
+
+  return (
+    <Box
+    justifyContent={"center"}
+    sx={{
+      display: "flex",
+      width: {width},
+      maxWidth: { maxWidth },
+      height: "auto",
+      border: "1px solid #c8ccd1",
+      backgroundColor: "#f8f9fa",
+    }}
+  >
+    {getImage()}
   </Box>
-  );
+  )
 };
 
 export default Image;

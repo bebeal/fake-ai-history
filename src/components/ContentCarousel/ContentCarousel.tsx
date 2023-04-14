@@ -1,71 +1,99 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from "react";
 
-// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-// import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-// import styled from 'styled-components';
+import styled from "styled-components";
+import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
+import { Box, IconButton } from "@mui/material";
 
-// const CarouselContainer = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   position: relative;
-//   overflow: hidden;
-// `;
+const CarouselWrapper = styled.div`
+  float: left;
+  margin: auto 5px auto 0px;
+  max-width: 25%;
+  height: auto;
+`;
 
-// const CarouselContent = styled.div<{ position: number }>`
-//   display: flex;
-//   transform: ${({ position }) => `translateX(${position * -100}%)`};
-//   transition: transform 0.5s;
-// `;
 
-// const CarouselItem = styled.div`
-//   flex-shrink: 0;
-//   width: 100%;
-// `;
+const StyledCarousel = styled.div`
+  display: flex;
+  position: relative;
+  width: 100%;
+`;
 
-// const ArrowButton = styled(IconButton)`
-//   position: absolute;
-//   z-index: 1;
-// `;
+const CarouselContent = styled.div`
+  display: flex;
+  width: 100%;
+`;
 
-// const LeftArrow = styled(ArrowButton)`
-//   left: 0;
-// `;
+const CarouselButton = styled<any>(IconButton)`
+  position: absolute !important;
+  top: 50%;
+  z-index: 2;
+  ${({ isLeft }) => (isLeft ? "left: 0;" : "right: 0;")}
+`;
 
-// const RightArrow = styled(ArrowButton)`
-//   right: 0;
-// `;
+interface ContentCarouselProps {
+  contentList: any;
+}
 
-// interface ContentCarouselProps {
-//   content: React.ReactNode[];
-// }
+const ContentCarousel = ({ contentList }: ContentCarouselProps) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showButtons, setShowButtons] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-// const ContentCarousel: React.FC<ContentCarouselProps> = ({ content }) => {
-//   const [position, setPosition] = useState(0);
+  const handleMouseEnterImage = () => {
+    setShowButtons(true);
+  };
 
-//   const handlePrev = () => {
-//     setPosition((prev) => (prev === 0 ? content.length - 1 : prev - 1));
-//   };
+  const handleMouseLeaveImage = () => {
+    setShowButtons(false);
+  };
 
-//   const handleNext = () => {
-//     setPosition((prev) => (prev === content.length - 1 ? 0 : prev + 1));
-//   };
+  const handleMouseEnterButton = () => {
+    handleMouseEnterImage();
+    
+  };
 
-//   return (
-//     <CarouselContainer>
-//       <LeftArrow color="primary" onClick={handlePrev}>
-//         <ArrowBackIos />
-//       </LeftArrow>
-//       <CarouselContent position={position}>
-//         {content.map((item, index) => (
-//           <CarouselItem key={index}>{item}</CarouselItem>
-//         ))}
-//       </CarouselContent>
-//       <RightArrow color="primary" onClick={handleNext}>
-//         <ArrowForwardIos />
-//       </RightArrow>
-//     </CarouselContainer>
-//   );
-// };
+  const handleMouseLeaveButton = () => {
+    handleMouseLeaveImage();
+  };
 
-// export default ContentCarousel;
+
+  return (
+    <CarouselWrapper>
+    <StyledCarousel>
+      {contentList.length > 1 && (
+        <CarouselButton
+          color="primary"
+          onMouseEnter={handleMouseEnterButton} onMouseLeave={handleMouseLeaveButton}
+          isLeft={true}
+          style={{ opacity: showButtons ? 1 : 0 }}
+          onClick={() => {
+            setCurrentIndex(
+              (currentIndex - 1 + contentList.length) % contentList.length
+            );
+          }}
+        >
+          <ArrowBackIos />
+        </CarouselButton>
+      )}
+      <CarouselContent ref={contentRef} onMouseEnter={handleMouseEnterImage} onMouseLeave={handleMouseLeaveImage}>
+        {contentList[currentIndex].getContent()}
+      </CarouselContent>
+      {contentList.length > 1 && (
+        <CarouselButton
+          color="primary"
+          onMouseEnter={handleMouseEnterButton} onMouseLeave={handleMouseLeaveButton}
+          style={{ opacity: showButtons ? 1 : 0 }}
+          onClick={() => {
+            setCurrentIndex((currentIndex + 1) % contentList.length);
+          }}
+        >
+          <ArrowForwardIos />
+        </CarouselButton>
+      )}
+    </StyledCarousel>
+    </CarouselWrapper>
+  );
+};
+
+export default ContentCarousel;
