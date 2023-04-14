@@ -2,10 +2,18 @@ node_modules
 scripts
 icons
 public/icons
+.vscode
+build
+dist
+.idea
+*.iml
+*.log
+
+
+# Mac OS X
 .DS_Store
 public/.DS_Store
 ._*
-# Files that might appear in the root of a volume
 .DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100
@@ -13,10 +21,21 @@ public/.DS_Store
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
-
-# Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Windows
+Desktop.ini
+$RECYCLE.BIN/
+$Recycle.Bin/
+System Volume Information/
+.~lock.*/
+
+# Linux
+.Trash-*
+.Trash/*
+.nfs*
+

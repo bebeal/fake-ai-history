@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import Tag from "./Tag";
+import NamedTag from "./NamedTag";
 import styled from 'styled-components';
 
-const TagListContainer = styled.div<TagListProps>`
-    display: flex;
+const TagListContainer = styled.div<any>`
+    display: ${(props: any) => props.display || "flex"};
     width: auto;
     flex-wrap: wrap;
     flex-direction: ${(props: any) => props.direction};
@@ -19,26 +19,34 @@ const TagListContainer = styled.div<TagListProps>`
     }
 `
 
+// TagList is a component that renders a list of tags
+// Props:
+// tagNames: an array of strings correspond to the global tag map
+// direction: "row" or "column" for the direction of the tags. Default: "row"
+// useHref: whether or not to use hrefs for the tags. Default: false
+// tagColors: an array of strings that represent the colors of the tags. Default:
 interface TagListProps {
-  tags?: any;
+  tagNames?: string[];
   direction?: 'row' | 'column';
   useHref?: boolean;
   tagColors?: string[];
+  activeTags?: string[];
 }
 
 const TagList: React.FC<TagListProps> = ({ 
-    tags, 
+    tagNames=[],
     direction='row',
     useHref=false,
     tagColors=[],
+    activeTags=tagNames,
 }) => {
-  const getTag = (tagName: string, tagColor?: string) => {
-    return (<div key={tagName} style={{width: 'auto'}}><Tag tagName={tagName} useHref={useHref} tagColor={tagColor} /></div>);
+  const getTag = (tagName: string, tagColor?: string, active?: boolean) => {
+    return (<div key={tagName} style={{width: 'auto'}}><NamedTag tagName={tagName} useHref={useHref} tagColor={tagColor} initiallyActive={active} /></div>);
   };
 
   return (
-    <TagListContainer direction={direction}>
-      {tags && tags.map((tagName: string, index: number) => getTag(tagName, tagColors[index] || 'white') )}
+    <TagListContainer display={tagNames.length > 0 ? "flex" : "none"} direction={direction}>
+      {tagNames && tagNames.map((tagName: string, index: number) => getTag(tagName, tagColors[index] || 'white', activeTags.includes(tagName)) )}
     </TagListContainer>
   );
 };

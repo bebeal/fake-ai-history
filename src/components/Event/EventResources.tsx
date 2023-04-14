@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { extractName } from "../../utils/utils";
 
 interface EventResourcesProps {
   resources: any;
@@ -10,7 +11,9 @@ const EventResources: React.FC<EventResourcesProps> = ({
 }) => {
 
   const getResource = (resource: any) => {
-    return (<Typography component={'span'}>{resource}</Typography>)
+    // TODO: Add logic to render the resource based on type
+    const site = extractName(resource.url);
+    return (<Typography component={'span'}>{site}</Typography>)
   };
 
   return (

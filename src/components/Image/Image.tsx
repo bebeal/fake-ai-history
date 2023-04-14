@@ -1,6 +1,6 @@
 import React from "react";
-import Markdown from "markdown-to-jsx";
 import { Box, CardMedia, Paper, Typography } from "@mui/material";
+import Captioned from "../Captioned/Captioned";
 
 export interface ImageProps {
   caption?: string;
@@ -8,37 +8,89 @@ export interface ImageProps {
   src?: string;
   alt?: string;
   width?: string;
-
+  maxWidth?: string;
+  source?: string;
+  baseImage?: boolean;
 }
 
-const Image: React.FC<ImageProps> = ({ 
-    caption,
-    header,
-    src,
-    alt,
-    width="300px"
+const Image: React.FC<ImageProps> = ({
+  caption,
+  header,
+  src,
+  alt,
+  width = "300px",
+  maxWidth = "25%",
+  source,
+  baseImage = false,
 }) => {
-
   const getHeader = () => {
-    return (<Typography gutterBottom variant="h5" component="h2">{header}</Typography>);
-  }
+    return (
+      <Typography variant="h6" component="h2">
+        {header}
+      </Typography>
+    );
+  };
 
   const getCaption = () => {
-    return (<Typography variant="caption" component={'span'}>{caption}</Typography>);
-  }
+    return (
+      <Typography variant="caption" component={"span"}>
+        {caption}
+      </Typography>
+    );
+  };
+
+  const getText = () => {
+    return (
+      <Box
+        sx={{
+          padding: "0px 6px 0px 6px",
+          margin: "0px",
+          fontSize: "60%",
+          textAlign: "center",
+          width: "100%",
+        }}
+      >
+        {header && getHeader()}
+        {caption && getCaption()}
+      </Box>
+    );
+  };
 
   return (
-    <Box sx={{ display: "flex", width: width, height: "auto", float: "left", margin: "0.25em 0.9em 0em 0em", border: "1px solid #c8ccd1", backgroundColor: "#f8f9fa" }} >
-      <Box sx={{ padding: "4px", display: 'flex', overflow: "hidden" }}>
-        <Typography component={'span'}>
-        <CardMedia component={"img"} src={src} alt={alt} sx={{ outline: "1px solid #c8ccd1" }}/>
-          <Box sx={{ padding: "6px", fontSize: "80%", textAlign: "center"}}>
-            {header && getHeader()}
-            {caption && getCaption()}
-          </Box>
-          </Typography>
-      </Box>
+    <Box
+    justifyContent={"center"}
+    sx={{
+      display: "flex",
+      width: "auto",
+      maxWidth: { maxWidth },
+      height: "auto",
+      float: "left",
+      margin: "auto 5px auto 0px",
+      border: "1px solid #c8ccd1",
+      backgroundColor: "#f8f9fa",
+    }}
+  >
+    <Box
+      sx={{
+        padding: "4px",
+        display: "flex",
+        overflow: "hidden",
+        backgroundColor: "white",
+      }}
+    >
+      <Typography width={"100%"}>
+        <Captioned caption={source} marginBottom={"0px"}>
+          <CardMedia
+            component={"img"}
+            src={src}
+            alt={alt}
+            sx={{ outline: "1px solid #c8ccd1", width: "100%" }}
+          />
+        </Captioned>
+        {(caption || header) && getText()}
+      </Typography>
     </Box>
+  </Box>
   );
 };
 

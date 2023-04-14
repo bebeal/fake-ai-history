@@ -1,19 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Event from './components/Event/Event';
 import Image from './components/Image/Image';
-import Tag from './components/Tag/Tag';
+import NamedTag from './components/Tag/NamedTag';
 import TagList from './components/Tag/TagList';
-import { TAGS, renderAllTagSets } from './components/Tag/Tags';
+import { TAGS, RenderAllTagSets } from './components/Tag/Tags';
+import MatrixEffectBackground from './components/MatrixEffect/MatrixEffect';
+import { Grid } from '@mui/material';
+import MemeModeToggle from './components/MemeModeToggle/MemeModeToggle';
+import GradientBackground from './components/Gradient/GradientBackground';
+import Timeline from './components/Timeline/Timeline';
+import Starfield from './components/Starfield/Starfield';
 
-function App() {
+const App = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('./events.json');
+        const jsonData = await response.json();
+        const events = jsonData.map((event: any) => {
+          return event;
+        });
+        setData(events);
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="App" style={{margin: '10px'}}>
-      
-      <div style={{
-        maxWidth: '1000px',
-        height: 'auto'
-      }}>
-        <Event 
+
+       <Timeline initialEvents={data} activeTags={TAGS} />
+    </div>
+  );
+}
+
+export default App;
+{/* <Event 
           title={"VAE"}
           subtitle={"Variational Auto Encoder"} 
           date={"10202020"} 
@@ -28,7 +55,8 @@ function App() {
             image: "",
             tags: [],
             alt: [],
-          }} 
+          }}
+          tagNames={['Org_PyTorch', 'Custom_AIBrain', 'Custom_Brain']}
           papers={[
             {
                 "title": "Auto-Encoding Variational Bayes",
@@ -92,11 +120,4 @@ function App() {
             }
           ]} 
           resources={["https://lilianweng.github.io/posts/2018-08-12-vae/", "https://paperswithcode.com/method/vae"]} 
-          />
-      </div>
-      {renderAllTagSets()}
-    </div>
-  );
-}
-
-export default App;
+          /> */}

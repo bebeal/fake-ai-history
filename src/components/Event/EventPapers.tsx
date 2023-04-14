@@ -5,6 +5,7 @@ import ResearchPaper from '../ResearchPaper/ResearchPaper';
 import { Document, Outline, Page, pdfjs } from 'react-pdf';
 import ResearchPaperList from "../ResearchPaper/ResearchPaperlist";
 
+
 interface EventPapersProps {
   papers: any;
 }
@@ -13,7 +14,11 @@ const EventPapers: React.FC<EventPapersProps> = ({
   papers,
 }) => {
   return (
-    <ResearchPaper paper={papers[0]} />
+    <Box display="flex" justifyContent={"center"} alignItems={"center"}>
+      <Box sx={{ width: '95%', maxHeight: '300px' }}>
+          {papers.map((paper: any) => <ResearchPaper paper={paper} />)}
+      </Box>
+    </Box>
   );
 };
 

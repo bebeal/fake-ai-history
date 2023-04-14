@@ -28,7 +28,7 @@
     display: inline-flex;
     font-size: 0.875rem;
     line-height: 1.25rem; 
-    height: 1.75rem;
+    height: 1.5rem;
     margin: 0px 0.125rem 0.125rem 0px;
     max-width: 100%;
     overflow: hidden;
@@ -49,13 +49,13 @@
 .dark .tag {
     --tw-border-color: #141c2e;
 }
-/* Tag Color Variants: white, blue, green, indigo, orange, purple, yellow */
+/* Tag Color Variants: white, ghost, blue, green, indigo, orange, purple, yellow author */
 /* White Tag */
 .tag-white {
     --tw-gradient-from: #ffffff;
     --tw-gradient-to: #ffffff;
     --tw-color: #374151;
-    --tw-border-color: #dee1e6;
+    --tw-border-color: #F3F4F680;
 }
 .tag-white:hover {
     --tw-gradient-to: #f3f4f6;
@@ -65,9 +65,29 @@
     --tw-gradient-from: #101623;
     --tw-gradient-to: #101623;
     --tw-border-color: #d1d5db;
-    --tw-color: #d1d5db;
+    --tw-color: #d1d5db80;
 }
 .dark .tag-white:hover {
+    --tw-gradient-to: #1f2937;
+}
+/* Ghost */
+.tag-ghost {
+    --tw-gradient-from: #ffffff;
+    --tw-gradient-to: #ffffff;
+    --tw-color: #374151;
+    --tw-border-color: #dee1e6;
+}
+.tag-ghost:hover {
+    --tw-gradient-to: #f3f4f6;
+}
+/* Ghost Tag (Dark Mode) */
+.dark .tag-ghost {
+    --tw-gradient-from: #101623;
+    --tw-gradient-to: #101623;
+    --tw-border-color: #d1d5db;
+    --tw-color: #d1d5db;
+}
+.dark .tag-ghost:hover {
     --tw-gradient-to: #1f2937;
 }
 /* Blue Tag */
@@ -190,4 +210,14 @@
 }
 .dark .tag-yellow:hover {
     --tw-gradient-to: #1f2937;
+}
+/* Author Tag */
+.tag-author {
+    --tw-gradient-from: #f8f9fa;
+    --tw-gradient-to: #f8f9fa00;
+    --tw-color: #374151;
+    --tw-border-color: #797A7B80;
+}
+.tag-author:hover {
+    --tw-gradient-to: #ffffff;
 }
