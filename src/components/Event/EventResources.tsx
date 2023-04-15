@@ -1,8 +1,17 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, styled } from "@mui/material";
 import { extractName } from "../../utils/utils";
+import { LABEL_TAG_MAP } from "../Tag/Tags";
+import NamedTag from "../Tag/NamedTag";
+import Tag from "../Tag/Tag";
 
-interface EventResourcesProps {
+const ResourcesTab = styled(Box)`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+`
+
+export interface EventResourcesProps {
   resources: any;
 }
 
@@ -11,17 +20,21 @@ const EventResources: React.FC<EventResourcesProps> = ({
 }) => {
 
   const getResource = (resource: any) => {
-    // TODO: Add logic to render the resource based on type
-    const site = extractName(resource.url);
-    return (<Typography component={'span'}>{site}</Typography>)
+    const iconName: any = resource["icon"];
+    let icon = undefined;
+    if (Object.keys(LABEL_TAG_MAP).includes(iconName)) {
+      const tag: any = LABEL_TAG_MAP[iconName];
+      icon = tag.icon;
+    } else if (iconName.includes("http") || iconName.includes("https")) {
+      icon = <img src={iconName} alt={extractName(iconName)} style={{ width: '16px', height: '16px' }} />;
+    }
+    return (<Tag icon={icon} label={resource["label"]} href={resource["url"]} tagColor="ghost" />);
   };
 
   return (
-    <Box>
-      {  resources.name && 
-      resources.array.forEach((resource: any) => getResource(resource))
-      }
-    </Box>
+    <ResourcesTab>
+      { resources && resources.map((resource: any) => getResource(resource)) }
+    </ResourcesTab>
   );
 };
 

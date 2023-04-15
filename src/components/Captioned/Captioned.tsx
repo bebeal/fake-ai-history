@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography, styled } from "@mui/material";
-import EventIcon from '@mui/icons-material/Event';
 const Container = styled<any>(Box)`
   position: relative;
   width: auto;

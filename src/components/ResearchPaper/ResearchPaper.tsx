@@ -1,16 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Accordion, AccordionDetails, AccordionSummary, Box, CircularProgress, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { Document, Outline, Page, pdfjs } from "react-pdf";
+import { Document, Page, pdfjs } from "react-pdf";
 import Captioned from "../Captioned/Captioned";
 import Tag from "../Tag/Tag";
 import { styled } from '@mui/material/styles';
-import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
-import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
-import MuiAccordionSummary, {
-  AccordionSummaryProps,
-} from '@mui/material/AccordionSummary';
-import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import "./ResearchPaper.css";
 import NamedTag from "../Tag/NamedTag";
@@ -75,12 +69,12 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
     setWidth(pdfRef.current!.getBoundingClientRect().width);
   };
 
-  const onLoadError = (error: any) => {
+  const onLoadError = useCallback((error: any) => {
     paper.url_pdf = undefined;
     setWidth(0);
-  };
+  }, [paper]);
 
-  const getPaper = () => {
+  const getPaper = useCallback(() => {
     return (
       <Grid
         container
@@ -120,7 +114,7 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
         </Captioned>
       </Grid>
     );
-  };
+  }, [onLoadError, paper.url_pdfs, paper.urls, width]);
 
   const getCaptioned = (component: any, caption: string, label: boolean) => {
     return (
@@ -130,7 +124,7 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
     );
   };
 
-  const getTitle = () => {
+  const getTitle = useCallback(() => {
     return (
       <Typography
         variant="subtitle2"
@@ -141,9 +135,9 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
         {paper.title}
       </Typography>
     );
-  };
+  }, [paper.title]);
 
-  const getDate = () => {
+  const getDate = useCallback(() => {
     return (
       <Typography
       noWrap
@@ -157,21 +151,21 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
       {paper.date}
     </Typography>
     );
-  };
+  }, [paper.date]);
 
   const getLastName = (author: string) => {
     return author.split(" ").slice(-1)[0].toLowerCase();
   };
 
-  const getNamedAuthorTagName = (author: string) => {
+  const getNamedAuthorTagName = useCallback((author: string) => {
     return "Custom_" + getLastName(author);
-  }
+  }, []);
 
-  const getNamedAuthorTag = (author: string) => {
+  const getNamedAuthorTag = useCallback((author: string) => {
     return (
       <NamedTag tagName={getNamedAuthorTagName(author)} tagColor={"author"} />
     );
-  };
+  }, [getNamedAuthorTagName]);
 
   const getAuthorTag = (author: string) => {
     return (
@@ -179,25 +173,25 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
     );
   };
 
-  const getAuthor = (author: string) => {
+  const getAuthor = useCallback((author: string) => {
     return (
       <Box padding="0px" margin="4px 0px 0px 0px">
         {tagInMap(getNamedAuthorTagName(author)) ? getNamedAuthorTag(author) : getAuthorTag(author)}
       </Box>
-    )
-  }
+    );
+  }, [getNamedAuthorTag, getNamedAuthorTagName]);
 
-  const getAuthors = () => {
+  const getAuthors = useCallback(() => {
     return (
       <Typography
-        noWrap
+        flexWrap={"wrap"}
         gutterBottom
         fontWeight="400"
         fontSize={"12px"}
         display="flex"
         height="100%"
-        justifyContent={"center"}
-        alignItems={"center"}
+        justifyContent={"left"}
+        alignItems={"left"}
       >
         {paper.authors.map((author: string, index: number) =>
           // index === paper.authors.length - 1 ? author : author + ", "
@@ -205,18 +199,18 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
         )}
       </Typography>
     );
-  };
+  }, [getAuthor, paper.authors]);
 
-  const getAuthorAndDate = () => {
+  const getAuthorAndDate = useCallback(() => {
     return (
-      <Box margin="0px" padding="0px" display="inline-flex" height="auto">
-        <div style={{marginRight: "16px", height: "100%"}}>{getCaptioned(getDate(), "Date", true)}</div>
-        <div style={{height: "100%"}}>{getCaptioned(getAuthors(), "Authors", true)}</div>
+      <Box margin="0px" padding="0px" display="flex" height="auto">
+        <Box style={{marginRight: "16px", height: "auto"}}>{getCaptioned(getDate(), "Date", true)}</Box>
+        <Box style={{height: "auto"}}>{getCaptioned(getAuthors(), "Authors", true)}</Box>
       </Box>
     );
-  };
+  }, [getAuthors, getDate]);
 
-  const getAbstract = () => {
+  const getAbstract = useCallback(() => {
     return (
       <AbstractText
         lineHeight={"1"}
@@ -227,9 +221,9 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
         {paper.abstract}
       </AbstractText>
     );
-  };
+  }, [lineClamp, paper.abstract]);
 
-  const getPaperInfo = () => {
+  const getPaperInfo = useCallback(() => {
     return (
       <Grid
         item
@@ -246,35 +240,9 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
         {getCaptioned(getAbstract(), "Abstract", true)}
       </Grid>
     );
-  };
+  }, [getAbstract, getAuthorAndDate, getTitle]);
 
-  const getExpandedResearchPaper = () => {
-    return (
-      <Box
-      display={"flex"}
-      width={"100%"}
-      alignItems={"center"}
-      justifyContent={"center"}
-    >
-      <Box
-        style={{ backgroundColor: "#f8f9fa" }}
-        display={"flex"}
-        border={"1px solid #797A7B"}
-        margin={"5px"}
-        maxWidth={"80%"}
-        maxHeight={"90%"}
-        padding={"4px"}
-      >
-        <Grid container flexWrap={"nowrap"} overflow={"hidden"}>
-          {getPaperInfo()}
-          {getPaper()}
-        </Grid>
-      </Box>
-    </Box>
-    );
-  }
-
-  const getUnstyledExpandedResearchPaper = () => {
+  const getUnstyledExpandedResearchPaper = useCallback(() => {
     return (
       <Box padding={"4px"}>
         <Grid container flexWrap={"nowrap"} overflow={"auto"}>
@@ -283,9 +251,9 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
         </Grid>
       </Box>
     );
-  }
+  }, [getPaper, getPaperInfo]);
 
-  const getAccordionResearchPaper = () => {
+  const getResearchPaper = useCallback(() => {
     return (
       <Accordion
       disableGutters={true}
@@ -295,7 +263,7 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
       onChange={() => {
         setExpanded(!expanded);
       }}
-      style={{ border: "1px solid rgba(200, 204, 209, 1)", backgroundColor: "#f8f9fa", margin: "0px", padding: "0px",  width: "100%", maxHeight: "100%", maxWidth: "100%", overflow: "hidden"}}
+      style={{ border: "1px solid rgba(200, 204, 209, 1)", backgroundColor: "#f8f9fa", margin: "0px", padding: "0px",  width: "auto", maxHeight: "100%", maxWidth: "100%", overflow: "auto"}}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
@@ -307,15 +275,12 @@ const ResearchPaper: React.FC<ResearchPaperProps> = ({ paper }) => {
       <AccordionDetails>
         {getUnstyledExpandedResearchPaper()}
         </AccordionDetails>
-        
     </Accordion>
-
-
-    )
-  }
+    );
+  }, [expanded, getUnstyledExpandedResearchPaper, paper.title]);
   
 
-  return getAccordionResearchPaper();
+  return getResearchPaper();
 };
 
 export default ResearchPaper;

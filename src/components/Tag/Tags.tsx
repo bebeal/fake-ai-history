@@ -60,6 +60,26 @@ export const tagInMap = (tagName: string) => {
     return Object.keys(TAGS).includes(tagName);
 };
 
+export const LABEL_TAG_MAP: any = {
+    'wikipedia': TAGS['Org_Wikipedia'](0, '1em', '1em', '#000000', '#000000'),
+    'github': TAGS['Org_Github'](0, '1em', '1em', '#000000', '#000000'),
+    'youtube': TAGS['Org_Youtube'](0, '1em', '1em', '#000000', '#000000'),
+    'scholarpedia': TAGS['Org_Scholarpedia'](0, '1em', '1em', '#000000', '#000000'),
+    'arxiv': TAGS['Org_ArXiv'](0, '1em', '1em', '#000000', '#000000'),
+    'medium': TAGS['Org_Medium'](0, '1em', '1em', '#000000', '#000000'),
+    'pytorch': TAGS['Org_PyTorch'](0, '1em', '1em', '#000000', '#000000'),
+    'tensorflow': TAGS['Org_TensorFlow'](0, '1em', '1em', '#000000', '#000000'),
+    'jax': TAGS['Org_JAX'](0, '1em', '1em', '#000000', '#000000'),
+    'keras': TAGS['Org_Keras'](0, '1em', '1em', '#000000', '#000000'),
+    'pandas': TAGS['Org_pandas'](0, '1em', '1em', '#000000', '#000000'),
+    'numpy': TAGS['Org_NumPy'](0, '1em', '1em', '#000000', '#000000'),
+    'huggingface': TAGS['Org_HuggingFace'](0, '1em', '1em', '#000000', '#000000'),
+    'openai': TAGS['Org_OpenAI'](0, '1em', '1em', '#000000', '#000000'),
+    'deepmind': TAGS['Org_Deepmind'](0, '1em', '1em', '#000000', '#000000'),
+    'csulb': TAGS['Org_csulb'](0, '1em', '1em', '#000000', '#000000'),
+    'cornell': TAGS['Org_cornell'](0, '1em', '1em', '#000000', '#000000'),
+};
+
 export const getEmptyTag = (width: string = '18px', height: string = '18px', fill: string = '#FFFFFF', stroke: string = '#000000') => {
     return {
         label: '',

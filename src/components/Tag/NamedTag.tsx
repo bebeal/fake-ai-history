@@ -5,6 +5,7 @@ import { fourCornerGradientBackground, getTagFromMap } from "./Tags";
 
 interface NamedTagProps {
   tagName?: any;
+  labelOverride?: string;
   initiallyActive?: boolean;
   useHref?: boolean;
   variant?: number;
@@ -24,6 +25,7 @@ interface NamedTagProps {
 // height: The height of the tag. Default: 24px.
 const NamedTag: React.FC<NamedTagProps> = ({
     tagName,
+    labelOverride,
     initiallyActive=true,
     useHref=false,
     variant=0,
@@ -34,6 +36,13 @@ const NamedTag: React.FC<NamedTagProps> = ({
   const [active, setActive] = useState(initiallyActive);
   const tag: any = getTagFromMap(tagName, variant, width, height);
 
+  const getLabel = () => {
+    if (labelOverride && labelOverride.length > 0) {
+      return <span>{tag.labelOverride}</span>
+    }
+    return tag.label && tag.label.length > 0 && <span>{tag.label}</span>
+  }
+
   const getTag = (useHref: boolean): JSX.Element => {
     let tagClasses = 'tag tag-' + tagColor;
     let icoClasses = 'tag-ico';
@@ -41,7 +50,7 @@ const NamedTag: React.FC<NamedTagProps> = ({
       return (
         <a href={tag.href} className={tagClasses} target={'_blank'} rel="noreferrer" >
           {tag.icon && <div className={icoClasses}>{tag.icon}</div>}
-          {tag.label && tag.label.length > 0 && <span>{tag.label}</span>}
+          {getLabel()}
         </a>
       );
     } else {
@@ -49,7 +58,7 @@ const NamedTag: React.FC<NamedTagProps> = ({
       return (
         <div className={tagClasses} onClick={(event: any) => setActive(!active)}>
           {tag.icon && <div className={icoClasses}>{tag.icon}</div>}
-          {tag.label && tag.label.length > 0 && <span>{tag.label}</span>}
+          {getLabel()}
         </div>
       );
     }

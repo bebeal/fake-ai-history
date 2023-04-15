@@ -109,7 +109,7 @@ const Timeline = ({
         setEvents(sortEvents(initialEvents));
     }, [activeTags, setTagsSelected, initialEvents, setEvents]);
 
-    const getEvents = (event: EventProps) => {
+    const getEvent = (event: EventProps) => {
       // console.log('event', event);
       return (
         <TimelineItemContainer key={event.title}>
@@ -128,7 +128,7 @@ const Timeline = ({
 
     return (
       <TimelineContainer>
-        {events.map((event) => getEvents(event))}
+        {events.map((event) => getEvent(event))}
       </TimelineContainer>
     );
 };

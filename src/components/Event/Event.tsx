@@ -13,6 +13,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import EventModel from "./EventModel";
+import EventIcon from '@mui/icons-material/Event';
+import EventResources from "./EventResources";
 
 const StyledExpandMoreIcon = styled(ExpandMoreIcon)`
   transform: ${(props: { expanded: boolean }) => props.expanded ? 'rotate(180deg)' : 'none'};
@@ -115,7 +117,7 @@ const Event: React.FC<EventProps> = ({
   }
 
   const getResourcesTab = (): React.ReactNode => {
-    return <Box>{resources}</Box>;
+    return <EventResources resources={resources} />;
   }
 
   const getCollapsedCard = (): JSX.Element => {
@@ -132,12 +134,12 @@ const Event: React.FC<EventProps> = ({
           onChange={handleChange}
           variant="fullWidth"
         >
-          <Tab value="description" label="Event" icon={<AutoAwesomeRoundedIcon />} iconPosition="start" />
+          <Tab value="description" label="Event" icon={<EventIcon />} iconPosition="start" />
           {model && <Tab value="model" label="Model" icon={<AccountTreeRoundedIcon />} iconPosition="start" />}
           {papers && <Tab value="papers" label="Papers" icon={<InsertDriveFileIcon />} iconPosition="start" />}
           {resources && <Tab value="resources" label="Resources" icon={<LinkRoundedIcon />} iconPosition="start" />}
         </EventTabs>
-        <Box height={"200px"} overflow={"auto"}>
+        <Box height={"auto"} maxHeight={"600px"}  overflow={"auto"}>
             {activeTab === "description" && getDescriptionTab()}
             {papers && activeTab === "papers" && getPapersTab()}
             {model && activeTab === "model" && getModelTab()}
