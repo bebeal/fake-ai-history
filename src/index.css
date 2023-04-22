@@ -1,4 +1,5 @@
 body {
+  /* background-color: #101623; */
   background-color: #f3f7f9;
   margin: 0;
   font-family: 'Roboto', sans-serif;
@@ -22,3 +23,16 @@ a:hover {
 *, *::before, *:after {
   box-sizing: border-box;
 }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+  width: 100% !important;
+  height: auto !important;
+}
+
+
