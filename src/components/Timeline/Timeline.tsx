@@ -11,19 +11,7 @@ export const TimelineContainer = styled.div<any>`
   flex-direction: column;
   line-height: normal;
   width: 100%;
-`;
-
-export const TimelineItemWrapper = styled.div<any>`
-  z-index: -100;
-  height: 100%;
-  justify-content: center;
-  ${({ theme }) => {
-    if (theme) {
-      return `
-        background-color: #d8d8d8;
-      `;
-    }
-  }}
+  z-index: 2;
 `;
 
 export const TimelineInternalWrapper = styled.div<any>`
@@ -34,7 +22,7 @@ export const TimelineInternalWrapper = styled.div<any>`
   ${({ theme }) => {
     if (theme) {
       return `
-        background-color: #d8d8d8;
+        background-color: #transparent;
       `;
     }
   }}

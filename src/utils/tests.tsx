@@ -14,6 +14,8 @@ import { Timeline } from "../components/Timeline/Timeline";
 import { interpolateGradientInSRGB, interpolateGradientInLinearRGB, isURL, getDateInBetween, srgbToLinear, linearToSRGB, hexToRGBA, rgbaToHex } from "./utils";
 import { useEffect } from "react";
 import moment from "moment";
+import GradientBackground from "../components/GradientBackground/GradientBackground";
+import styled from "styled-components";
 
 const verbose = 0;
 
@@ -53,11 +55,28 @@ export const Test = () => {
           {/* {ResearchListTest()} */}
           {/* {TimelineItemTest()} */}
           {/* { gradientInterpolateTest() } */}
-          { TimelineTest() }
+          {/* { TimelineTest() } */}
+          { GradientBackgroundTest() }
         </div>
         <>{console.log('---------------END COMPONENT---------------')}</>
       </ThemeProvider>
     );
+};
+
+export const FlexContainer = styled.div<any>`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`;
+
+
+export const GradientBackgroundTest = () => {
+  return (
+    <FlexContainer>
+      <Timeline events={[{date: "2023-01-01"}, {date: "2023-02-01"}, {}, {date: "2023-05-01"}, {date: "2023-06-01"}, {date: "2023-07-01"}]} variant="red2"/>
+      <GradientBackground />
+    </FlexContainer>
+  );
 };
 
 export const gradientInterpolateTest = (gradientFrom: string = '#FF0000', gradientTo: string = '#008000', steps: number = 100) => {
