@@ -1,16 +1,43 @@
 import React from "react";
 import moment from "moment";
 import styled from "styled-components";
-import TimelineItem from "./TimelineItem";
+import TimelineItem, { EmptyTimelineItem } from "./TimelineItem";
 import { Themes } from "../../utils/themes";
 import { getDateInBetween, interpolateGradientInLinearRGB, normalize } from "../../utils/utils";
 
-export const TimelineContainer = styled.div`
+export const TimelineContainer = styled.div<any>`
   position: relative;
   display: flex;
   flex-direction: column;
   line-height: normal;
   width: 100%;
+`;
+
+export const TimelineItemWrapper = styled.div<any>`
+  z-index: -100;
+  height: 100%;
+  justify-content: center;
+  ${({ theme }) => {
+    if (theme) {
+      return `
+        background-color: #d8d8d8;
+      `;
+    }
+  }}
+`;
+
+export const TimelineInternalWrapper = styled.div<any>`
+  z-index: -100;
+  top: -20%;
+  height: 120%;
+  justify-content: center;
+  ${({ theme }) => {
+    if (theme) {
+      return `
+        background-color: #d8d8d8;
+      `;
+    }
+  }}
 `;
 
 export const TimelineTrackLine = styled.div<any>`
@@ -30,14 +57,6 @@ export const TimelineTrackLine = styled.div<any>`
   }}
   ${({ backgroundColor }) =>
     backgroundColor ? `background-color: ${backgroundColor};` : ""}
-`;
-
-export const EmptyTimelineItem = styled.div`
-  position: relative;
-  display: flex;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  height: 100px;
 `;
 
 export interface TimelineItemProps {
@@ -66,11 +85,7 @@ export const Timeline = ({ events, variant = "grey2" }: TimelineItemProps) => {
   const getDate = (baseIndex: number) => {
     let prevDate = events[baseIndex - 1].date;
     if (!prevDate) {
-      let index = baseIndex;
-      while (!prevDate) {
-        index--;
-        prevDate = events[index].date; 
-      }
+      prevDate = getDate(baseIndex - 1)[1];
     }
     let date = events[baseIndex].date;
     // special case, if date is empty, split difference between prev and next
@@ -107,6 +122,7 @@ export const Timeline = ({ events, variant = "grey2" }: TimelineItemProps) => {
     const date = events[index].date;
     return (
       <React.Fragment key={index}>
+        <TimelineInternalWrapper>
         <TimelineTrackLine
           key={index}
           gradientFrom={gradientFrom}
@@ -120,6 +136,7 @@ export const Timeline = ({ events, variant = "grey2" }: TimelineItemProps) => {
           gradientFrom={gradientFrom}
           gradientTo={gradientTo}
         /> : <EmptyTimelineItem />}
+        </TimelineInternalWrapper>
       </React.Fragment>
     );
   };

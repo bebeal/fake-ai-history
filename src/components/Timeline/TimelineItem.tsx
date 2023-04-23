@@ -9,15 +9,15 @@ import {
 } from "../../utils/utils";
 import { Themes } from "../../utils/themes";
 
-export const TimelineItemContainer = styled.div`
+export const EmptyTimelineItem = styled.div<any>`
   position: relative;
   display: flex;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  height: 100px;
+  margin: 10px 0px;
+`;
 
-  :nth-child(1): {
-    margin-top: 20px;
-  }
+export const TimelineItemContainer = styled(EmptyTimelineItem)<any>`
+  z-index: 50;
 `;
 
 export const TimelineItemColumn = styled.div<any>`
