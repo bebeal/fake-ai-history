@@ -164,7 +164,7 @@ export const Themes: any = {
       backgroundColor: "#ffffff",
       gradientFrom: "#777777",
       gradientTo: "#777777",
-      color: "#000000",
+      color: "#474747",
       borderColor: "#777777",
       hover: {
         gradientTo: "#f3f4f6",

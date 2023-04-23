@@ -5,13 +5,21 @@ import { Themes } from "../../utils/themes";
 
 export const TimelineItemDateContainer = styled.time<any>`
   height: auto;
-  font-weight: 500;
-  padding: 4px;
+  font-weight: ${(props: any) => props.expanded ? "600" :  "400"};
+  padding: 2px;
   z-index: 100;
+  align-self: center; 
 
-  ${({ variant, gradientFrom, gradientTo }) => {
+  ${({ variant, gradientFrom, gradientTo, expanded }) => {
     const tagVariant = Themes[variant];
     if (tagVariant) {
+      if (expanded) {
+        return `
+            background-color: ${tagVariant.color};
+            color: ${tagVariant.backgroundColor};
+            border: 1px solid ${tagVariant.color};
+        `;
+      }
       return `
             background-color: ${tagVariant.borderColor};
             color: ${tagVariant.backgroundColor};
@@ -43,11 +51,12 @@ interface TimelineItemDateProps {
   fontSize?: string;
   gradientFrom?: string;
   gradientTo?: string;
+  expanded? : boolean;
 }
 
 export const TimelineItemDate = ({
   date,
-  formats = ["DD MMM YYYY", "MM/DD/YYYY", "MM/YYYY", "YYYY"],
+  formats = ["MM/DD/YYYY", "MM/YYYY", "YYYY"],
   variant = "ghost",
   backgroundColor,
   border,
@@ -56,6 +65,7 @@ export const TimelineItemDate = ({
   fontSize = "0.85rem",
   gradientFrom,
   gradientTo,
+  expanded = false,
 }: TimelineItemDateProps) => {
   const [format, setFormat] = React.useState<number>(0);
 
@@ -94,6 +104,7 @@ export const TimelineItemDate = ({
       fontSize={fontSize}
       gradientFrom={gradientFrom}
       gradientTo={gradientTo}
+      expanded={expanded}
     >
       {moment(date).format(formats[format])}
     </TimelineItemDateContainer>

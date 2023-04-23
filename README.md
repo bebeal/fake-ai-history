@@ -193,7 +193,10 @@ npm install react-pdf
 npm i --save-dev @types/react-pdf
 npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 npm i moment
+npm install -S color
 npm i --save-dev @types/color
+npm install -S @carbon/icons-react
+npm i --save-dev @types/carbon__icons-react
 ```
 
 * `npm run build`

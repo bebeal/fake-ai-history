@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import moment from "moment";
 import GradientBackground from "../components/GradientBackground/GradientBackground";
 import styled from "styled-components";
+import EventBlock from "../components/EventBlock/EventBlock";
 
 const verbose = 0;
 
@@ -56,11 +57,21 @@ export const Test = () => {
           {/* {TimelineItemTest()} */}
           {/* { gradientInterpolateTest() } */}
           {/* { TimelineTest() } */}
-          { GradientBackgroundTest() }
+          {/* { GradientBackgroundTest() } */}
+          { EventBlockTest() }
         </div>
         <>{console.log('---------------END COMPONENT---------------')}</>
       </ThemeProvider>
     );
+};
+
+export const EventBlockTest = () => {
+  return (
+    <Grid container flexDirection={'column'} rowGap={2} flexWrap="nowrap" sx={{ overflow: 'auto'}} >
+      <EventBlock date={'2020-01-01'} title={'Test Event'} initialExpanded={true} />
+      <EventBlock date={'2020-03-01'} title={'Test Event22'} initialExpanded={false} variant={'grey2'} />
+    </Grid>
+  );
 };
 
 export const FlexContainer = styled.div<any>`

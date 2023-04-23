@@ -58,10 +58,11 @@ export const TimelineItemEventMargin = styled.div<any>`
 `;
 
 export const TimelineItemEventDate = styled.div<any>`
-  width: 100%;
+  width: auto;
   height: 24px;
   display: flex;
-`;
+  ${({ marginRight }) => (marginRight ? `margin-right: ${marginRight};` : "")}
+  `;
 
 export interface TimelineItemEventProps {
   children?: any;
