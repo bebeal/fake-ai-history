@@ -1,3 +1,9 @@
+# Generated Content
+
+This repository contains code/data that may or may not have been generated from nets aka: I'm not responsible in any way for anything here. Oh that goes for anything on the internet associated to me btw. This hazard warning content itself is auto-generated. So are you.
+
+---
+
 # AI History
 
 ## Libraries
