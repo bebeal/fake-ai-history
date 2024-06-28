@@ -2,6 +2,16 @@
 
 This repository contains code/data that may or may not have been generated from nets aka: I'm not responsible in any way for anything here. Oh that goes for anything on the internet associated to me btw. This hazard warning content itself is auto-generated. So are you.
 
+First solid attempt at generating:
+
+1. the website ui code for a knowledge graph in the shape of a brain
+2. documentation of repo structure for development purposes
+3. the rough content outline of what types of content might be accessible from the knowledge graph
+
+all of this in a total of 2 prompts with a local llm that fits in 8GB VRAM and can be trained in less than a day on a 3090. GG dude, you're either lying to yourself about your replaceability or you're scaling like me, let's see who makes it. 
+
+https://github.com/bebeal/fake-ai-history/assets/42706447/756a91f3-ea7e-498c-b5dd-f1ce291b9714
+
 ---
 
 # AI History
